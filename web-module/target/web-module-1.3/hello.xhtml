@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+    <h1>People data</h1>
+    <p>5 * 8 is #{5 * 8}</p>
+    <p>#{registrationEJB.firstName}</p>
+
+    <p:dataTable id="passengers" value="#{passengerController.allPassengers}" var="passenger">
+        <p:column headerText="id">
+            <h:outputText value="#{passenger.id}"/>
+        </p:column>
+        <p:column headerText="first name">
+            <h:outputText value="#{passenger.firstName}"/>
+        </p:column>
+        <p:column headerText="last name">
+            <h:outputText value="#{passenger.lastName}"/>
+        </p:column>
+    </p:dataTable>
+    <p:dataTable id="flight" value="#{flightController.flightNumbers}" var="flight">
+        <p:column headerText="number">
+            <h:outputText value="#{flight.number}"/>
+        </p:column>
+
+    </p:dataTable>
+</h:body>
+
+</html>
