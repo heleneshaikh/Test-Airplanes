@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+</h:head>
+
+<h:body>
+    <h1>Registration Form</h1>
+    <h:form>
+        <div>
+            <p:outputLabel value="First name: " id="firstName" for="firstNameInput"/>
+            <p:inputText value="#{registrationEJB.firstName}" id="firstNameInput" placeholder="Enter first name"/>
+        </div>
+        <div>
+            <p:outputLabel value="Last name: " id="lastName" for="lastNameInput"/>
+            <p:inputText value="#{registrationEJB.firstName}" id="lastNameInput"/>
+        </div>
+        <div>
+            <h:panelGrid columns="2" style="margin:10px 10px 10px 10px" cellpadding="5" >
+                <p:outputLabel for="gender" value="gender: " />
+                <p:selectOneMenu value="#{registrationEJB.gender}" id="gender">
+                    <f:selectItem itemLabel="male" itemValue="male" />
+                    <f:selectItem itemLabel="female" itemValue="female" />
+                </p:selectOneMenu>
+            </h:panelGrid>
+        </div>
+        <div>
+            <p:outputLabel value="Date of Birth: "/>
+            <p:inputText value="#{registrationEJB.datOfBirth}" id="birthDateInput">
+                <f:convertDateTime pattern="dd/MM/YYYY" type="date"/>
+            </p:inputText>
+        </div>
+        <div>
+            <p:outputLabel value="Email address" id="email" for="emailInput"/>
+            <p:inputText value="#{registrationEJB.email}" id="emailInput"/>
+        </div>
+        <div>
+            <p:outputLabel value="Account number:" id="account" for="accountInput"/>
+            <p:inputText value="#{registrationEJB.accountNumber}" id="accountInput"/>
+        </div>
+        <div>
+            <p:commandButton value="register" type="submit" action="registrationEJB.register"/>
+        </div>
+
+
+    </h:form>
+</h:body>
+
+
+</html>

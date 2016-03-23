@@ -14,7 +14,25 @@
 
 <h:body>
     <h:form>
-
+        <div>
+            <h:outputLabel value="first name: " id="firstName">
+                <h:outputText value="#{registrationEJB.firstName}"/>
+            </h:outputLabel>
+        </div>
+        <div>
+            <h:outputLabel value="last name: " id="lastName">
+                <h:outputText value="#{registrationEJB.lastName}"/>
+            </h:outputLabel>
+        </div>
+        <div>
+            <h:panelGrid columns="2" style="margin:10px 10px 10px 10px" cellpadding="5" >
+                <p:outputLabel for="gender" value="gender: " />
+                <p:selectOneMenu value="#{registrationEJB.gender}" id="gender">
+                    <f:selectItem itemLabel="male" itemValue="male" />
+                    <f:selectItem itemLabel="female" itemValue="female" />
+                </p:selectOneMenu>
+            </h:panelGrid>
+        </div>
     </h:form>
 </h:body>
 

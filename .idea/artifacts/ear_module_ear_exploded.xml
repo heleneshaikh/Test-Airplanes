@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="ear-module:ear exploded">
+    <output-path>$PROJECT_DIR$/ear-module/target/jee7-starter</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ear-module/javaeeApplication/JavaEE" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/ear-module/target/jee7-starter/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="archive" name="ejb-module.jar">
+        <element id="artifact" artifact-name="ejb-module:ejb exploded" />
+      </element>
+      <element id="archive" name="web-module.war">
+        <element id="artifact" artifact-name="web-module:war exploded" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -18,9 +18,10 @@ import java.util.List;
  */
 
 
-    @Stateless
-    @LocalBean
+@Stateless
+@LocalBean
 public class PassengerEJB implements PassengerEJBRemote {
+
     @PersistenceContext
     EntityManager em;
 
@@ -70,9 +71,6 @@ public class PassengerEJB implements PassengerEJBRemote {
         query.setParameter("lastName", lastName);
         return (String) query.getSingleResult();
     }
-
-
-
 
 
 }
