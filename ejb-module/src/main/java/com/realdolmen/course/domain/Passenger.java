@@ -10,8 +10,14 @@ import java.util.List;
  */
 
 @EntityListeners({ValidateNameListener.class})
+@NamedQueries({
+        @NamedQuery(name = "Passenger.findAll", query = "SELECT p FROM Passenger p"),
+        @NamedQuery(name= "Passenger.findByLastName", query = "SELECT p FROM Passenger p WHERE p.lastName = :lastName")
+})
 @Entity
 public class Passenger implements Serializable{
+    public static final String FIND_ALL = "Passenger.findAll";
+    public static final String FIND_BY_LAST_NAME = "Passenger.findByLastName";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -2,16 +2,14 @@ package com.realdolmen.course.repository;
 
 import com.realdolmen.course.domain.Passenger;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.faces.bean.ManagedProperty;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Created by heleneshaikh on 21/03/16.
@@ -63,12 +61,18 @@ public class PassengerEJB implements PassengerEJBRemote {
 
     @Override
     public List<Passenger> findAllPassengers() {
-        return em.createQuery("SELECT p FROM Passenger p", Passenger.class).getResultList();
+        List <Passenger> results = em.createNamedQuery(Passenger.FIND_ALL).getResultList();
+        return results;
     }
 
     public String getFirstName(String lastName) {
         Query query = em.createQuery("SELECT p.firstName FROM Passenger p WHERE p.lastName = :lastName");
         query.setParameter("lastName", lastName);
+        return (String) query.getSingleResult();
+    }
+
+    public String findByFirstName(String firstName) {
+       Query query = em.createNamedQuery(Passenger.FIND_BY_LAST_NAME).setParameter("firstName", firstName);
         return (String) query.getSingleResult();
     }
 

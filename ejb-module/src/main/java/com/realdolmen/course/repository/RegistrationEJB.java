@@ -3,7 +3,9 @@ package com.realdolmen.course.repository;
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,8 +13,8 @@ import java.util.Date;
  */
 
 @ManagedBean
-@Named
-public class RegistrationEJB {
+@SessionScoped
+public class RegistrationEJB implements Serializable{
 
     private String firstName;
     private String lastName;

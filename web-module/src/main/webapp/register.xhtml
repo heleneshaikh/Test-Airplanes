@@ -21,7 +21,7 @@
         </div>
         <div>
             <p:outputLabel value="Last name: " id="lastName" for="lastNameInput"/>
-            <p:inputText value="#{registrationEJB.firstName}" id="lastNameInput"/>
+            <p:inputText value="#{registrationEJB.firstName}" id="lastNameInput" placeholder="Enter last name"/>
         </div>
         <div>
             <h:panelGrid columns="2" style="margin:10px 10px 10px 10px" cellpadding="5" >
@@ -47,7 +47,7 @@
             <p:inputText value="#{registrationEJB.accountNumber}" id="accountInput"/>
         </div>
         <div>
-            <p:commandButton value="register" type="submit" action="registrationEJB.register"/>
+            <p:commandButton value="register" type="submit" action="passengerController.save"/>
         </div>
 
 
