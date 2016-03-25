@@ -9,11 +9,13 @@
 
 <h:head>
     <meta charset="UTF-8"/>
-    <title>Confirmation</title>
+    <title>Welcome</title>
 </h:head>
 
 <h:body>
-
+    <!-- page loads, JSF locates user bean, calls the getName method-->
+    <h3>Welcome, #{user.name}!</h3>
+    <!-- when the page is submitted, JSF invokes the setName method -->
 </h:body>
 
 

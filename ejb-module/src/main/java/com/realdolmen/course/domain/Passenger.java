@@ -12,12 +12,12 @@ import java.util.List;
 @EntityListeners({ValidateNameListener.class})
 @NamedQueries({
         @NamedQuery(name = "Passenger.findAll", query = "SELECT p FROM Passenger p"),
-        @NamedQuery(name= "Passenger.findByLastName", query = "SELECT p FROM Passenger p WHERE p.lastName = :lastName")
+        @NamedQuery(name= "Passenger.findByFirstName", query = "SELECT p FROM Passenger p WHERE p.firstName = :firstName")
 })
 @Entity
 public class Passenger implements Serializable{
     public static final String FIND_ALL = "Passenger.findAll";
-    public static final String FIND_BY_LAST_NAME = "Passenger.findByLastName";
+    public static final String FIND_BY_FIRST_NAME = "Passenger.findByFirstName";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,8 +28,6 @@ public class Passenger implements Serializable{
     @Column(length = 50)
     private String lastName;
     private int frequentFlyerMiles;
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
     @Transient
     private int age;
     @Embedded
@@ -45,19 +43,18 @@ public class Passenger implements Serializable{
     public Passenger() {
     }
 
-    public Passenger(String ssn, String firstName, String lastName, int frequentFlyerMiles, Date dateOfBirth, int age, Address address) {
+    public Passenger(String ssn, String firstName, String lastName, int frequentFlyerMiles, int age, Address address) {
         this.ssn = ssn;
         this.firstName = firstName;
         this.lastName = lastName;
         this.frequentFlyerMiles = frequentFlyerMiles;
-        this.dateOfBirth = dateOfBirth;
         this.age = age;
         this.address = address;
     }
 
     @PreUpdate
     private void validate() {
-        if (dateOfBirth == null) {
+        if (firstName == null) {
             throw new IllegalArgumentException();
         }
     }
@@ -100,14 +97,6 @@ public class Passenger implements Serializable{
 
     public void setFrequentFlyerMiles(int frequentFlyerMiles) {
         this.frequentFlyerMiles = frequentFlyerMiles;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public int getAge() {

@@ -1,13 +1,16 @@
 package com.realdolmen.course.repository;
 
+import com.realdolmen.course.domain.Address;
 import com.realdolmen.course.domain.Passenger;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.Date;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -65,15 +68,22 @@ public class PassengerEJB implements PassengerEJBRemote {
         return results;
     }
 
-    public String getFirstName(String lastName) {
+    public String findByLastName(String lastName) {
         Query query = em.createQuery("SELECT p.firstName FROM Passenger p WHERE p.lastName = :lastName");
         query.setParameter("lastName", lastName);
         return (String) query.getSingleResult();
     }
 
     public String findByFirstName(String firstName) {
-       Query query = em.createNamedQuery(Passenger.FIND_BY_LAST_NAME).setParameter("firstName", firstName);
+       Query query = em.createNamedQuery(Passenger.FIND_BY_FIRST_NAME).setParameter("firstName", firstName);
         return (String) query.getSingleResult();
+    }
+
+    @PostConstruct
+    public void initialize() {
+        Address address = new Address("3080", "Belgium");
+        Passenger passenger = new Passenger("ssn60", "Jimi", "Hendrikx", 100, 24, address);
+        em.persist(passenger);
     }
 
 

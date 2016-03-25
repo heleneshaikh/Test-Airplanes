@@ -13,7 +13,7 @@ import java.util.List;
  * Created by heleneshaikh on 23/03/16.
  */
 
-@ManagedBean
+@Named
 @RequestScoped
 public class PassengerController {
 
